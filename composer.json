@@ -1,0 +1,15 @@
+{
+    "name": "sae2/01",
+    "description": "sae organisée par M.Cutrona",
+    "autoload": {
+        "psr-4": {
+            "Sae2\\01\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "coud0011, sahi0015"
+        }
+    ],
+    "require": {}
+}
