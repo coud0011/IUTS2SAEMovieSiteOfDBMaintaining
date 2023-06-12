@@ -31,3 +31,4 @@ Pour lancer sous windows :
 ```shell
 composer start:windows
 ```
+Pour y accéder ensuite : [localhost](http://localhost:8000/)
