@@ -134,6 +134,10 @@ class Actor
         $this->placeOfBirth = $placeOfBirth;
     }
 
+    /**
+     * Supprime un acteur par rapport à l'id de l'objet courant
+     * @return $this
+     */
     public function delete(): Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
@@ -148,6 +152,10 @@ class Actor
         return $this;
     }
 
+    /**
+     * Met à jour un acteur par rapport à l'id de l'objet courant
+     * @return $this
+     */
     protected function update(): Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
@@ -173,6 +181,17 @@ class Actor
         return $this;
     }
 
+    /**
+     * Crée une instance de la classe Actor
+     * @param string $birthday
+     * @param string $name
+     * @param string $biography
+     * @param string $placeOfBirth
+     * @param int|null $avatarId
+     * @param string|null $deathday
+     * @param int|null $id
+     * @return Actor
+     */
     public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?int $avatarId=null, ?string $deathday, ?int $id=null): Actor
     {
         $actor=new Actor();
@@ -186,6 +205,10 @@ class Actor
         return $actor;
     }
 
+    /**
+     * Insère un acteur dans la base de données par rapport à l'objet courant
+     * @return $this
+     */
     protected function insert(): Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
@@ -204,6 +227,9 @@ class Actor
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function save(): Actor
     {
         if ($this->getId()) {
