@@ -167,4 +167,22 @@ class Movie
     {
         $this->title = $title;
     }
+
+    /**
+     * Supprime un film par rapport à l'id courant
+     * @return $this
+     */
+    public function delete(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            DELETE FROM Movie
+            WHERE id=:movieId
+        SQL
+        );
+        $stmt->bindValue('movieId', $this->getId(), PDO::PARAM_INT);
+        $stmt->execute();
+        $this->id=null;
+        return $this;
+    }
 }
