@@ -132,4 +132,18 @@ class Actor
     {
         $this->placeOfBirth = $placeOfBirth;
     }
+
+    public function delete(): Actor
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            DELETE FROM People
+            WHERE id=:actorId
+        SQL
+        );
+        $stmt->bindValue(':actorId', $this->getId(), PDO::PARAM_INT);
+        $stmt->execute();
+        $this->id=null;
+        return $this;
+    }
 }
