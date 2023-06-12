@@ -29,4 +29,22 @@ class ActorsCollection
         $stmt->setFetchMode(PDO::FETCH_CLASS, Actor::class);
         return $stmt->fetchAll();
     }
+
+    public static function findByMovieId(int $movieId): array
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            SELECT *
+            FROM People
+            WHERE id IN (SELECT peopleId
+                         FROM Cast
+                         WHERE movieId=:movieId
+            ORDER BY name
+        SQL
+        );
+        $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Actor::class);
+        return $stmt->fetchAll();
+    }
 }
