@@ -146,4 +146,29 @@ class Actor
         $this->id=null;
         return $this;
     }
+
+    protected function update(): Actor
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            UPDATE People
+            SET avatarId=:avatarId
+                birthday=:birthday,
+                deathday=:deathday,
+                name=:actorName,
+                biography=:biography,
+                placeOfBirth=:placeOfBirth
+            WHERE id=:actorId
+        SQL
+        );
+        $stmt->bindValue(':actorId', $this->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':avatarId', $this->getAvatarId(), PDO::PARAM_INT);
+        $stmt->bindValue(':birthday', $this->getBirthday());
+        $stmt->bindValue(':deathday', $this->getDeathday());
+        $stmt->bindValue(':actorName', $this->getName());
+        $stmt->bindValue(':biography', $this->getBiography());
+        $stmt->bindValue(':placeOfBirth', $this->getPlaceOfBirth());
+        $stmt->execute();
+        return $this;
+    }
 }
