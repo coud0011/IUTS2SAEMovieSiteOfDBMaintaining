@@ -73,7 +73,26 @@ class Cast
         $stmt->execute();
         $cast=$stmt->fetchObject(Cast::class);
         if (!$cast) {
-            throw new EntityNotFoundException("findById() - Cast not found");
+            throw new EntityNotFoundException("findByMovieId() - Cast not found");
+        }
+        return $cast;
+    }
+
+    public static function findByActorId(int $actorId): Cast
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM Cast
+            WHERE peopleId=:actorId
+            ORDER BY orderIndex
+        SQL
+        );
+        $stmt->bindParam(':actorId', $actorId, PDO::PARAM_INT);
+        $stmt->execute();
+        $cast=$stmt->fetchObject(Cast::class);
+        if (!$cast) {
+            throw new EntityNotFoundException("findByActorId() - Cast not found");
         }
         return $cast;
     }
