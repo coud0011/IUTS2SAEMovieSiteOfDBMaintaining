@@ -140,9 +140,32 @@ class WebPage
             <title>$this->title</title>
             </head>
             <body>
+                <header class="header">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <h1>$this->title</h1>
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                </header>
                 $this->body
                 <footer class="footer">
-                    Dernière modification de cette page le $date
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <div class="footer_text">Dernière modification de cette page le $date</div>
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
+                    <img src="img/cinema.png" alt="cinema" class="cinema">
                 </footer>
             </body>
         </html>
