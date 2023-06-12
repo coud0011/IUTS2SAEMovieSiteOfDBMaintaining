@@ -13,7 +13,7 @@ class GenresCollection
      * Retourne tous les genres
      * @return Genre[]
      */
-    public function findAll(): array
+    public static function findAll(): array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
