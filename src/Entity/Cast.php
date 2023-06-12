@@ -54,46 +54,4 @@ class Cast
     {
         return $this->orderIndex;
     }
-
-    /**
-     * Retourne le Cast correspondant au film passé en paramètre
-     * @return Cast
-     */
-    public static function findByMovieId(int $movieId): Cast
-    {
-        $stmt = MyPDO::getInstance()->prepare(
-            <<<'SQL'
-            SELECT *
-            FROM Cast
-            WHERE movieId=:movieId
-            ORDER BY orderIndex
-        SQL
-        );
-        $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
-        $stmt->execute();
-        $cast=$stmt->fetchObject(Cast::class);
-        if (!$cast) {
-            throw new EntityNotFoundException("findByMovieId() - Cast not found");
-        }
-        return $cast;
-    }
-
-    public static function findByActorId(int $actorId): Cast
-    {
-        $stmt = MyPDO::getInstance()->prepare(
-            <<<'SQL'
-            SELECT *
-            FROM Cast
-            WHERE peopleId=:actorId
-            ORDER BY orderIndex
-        SQL
-        );
-        $stmt->bindParam(':actorId', $actorId, PDO::PARAM_INT);
-        $stmt->execute();
-        $cast=$stmt->fetchObject(Cast::class);
-        if (!$cast) {
-            throw new EntityNotFoundException("findByActorId() - Cast not found");
-        }
-        return $cast;
-    }
 }
