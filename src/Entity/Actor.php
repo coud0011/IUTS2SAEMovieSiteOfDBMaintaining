@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use Exception\EntityNotFoundException;
 use PDO;
 
 class Actor
@@ -211,5 +212,28 @@ class Actor
             $this->insert();
         }
         return $this;
+    }
+
+    /**
+     * Retourne un acteur par rapport à l'id en paramètre
+     * @param int $id
+     * @return Actor
+     */
+    public static function findById(int $id): Actor
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM People
+            WHERE id=:actorId
+        SQL
+        );
+        $stmt->bindParam(':actorId', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $actor=$stmt->fetchObject(Actor::class);
+        if (!$actor) {
+            throw new EntityNotFoundException("findById() - Actor not found");
+        }
+        return $actor;
     }
 }
