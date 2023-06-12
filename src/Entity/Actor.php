@@ -202,4 +202,14 @@ class Actor
         $this->setId((int)MyPdo::getInstance()->lastInsertId());
         return $this;
     }
+
+    public function save(): Actor
+    {
+        if ($this->getId()) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+        return $this;
+    }
 }
