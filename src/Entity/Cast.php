@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use Exception\EntityNotFoundException;
+use PDO;
+
 class Cast
 {
     private int $id;
@@ -49,5 +53,28 @@ class Cast
     public function getOrderIndex(): int
     {
         return $this->orderIndex;
+    }
+
+    /**
+     * Retourne le Cast correspondant au film passé en paramètre
+     * @return Cast
+     */
+    public static function findByMovieId(int $movieId): Cast
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM Cast
+            WHERE movieId=:movieId
+            ORDER BY orderIndex
+        SQL
+        );
+        $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
+        $stmt->execute();
+        $cast=$stmt->fetchObject(Cast::class);
+        if (!$cast) {
+            throw new EntityNotFoundException("findById() - Cast not found");
+        }
+        return $cast;
     }
 }
