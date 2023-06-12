@@ -267,4 +267,14 @@ class Movie
         $this->setId((int)MyPdo::getInstance()->lastInsertId());
         return $this;
     }
+
+    public function save(): Movie
+    {
+        if ($this->getId()) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+        return $this;
+    }
 }
