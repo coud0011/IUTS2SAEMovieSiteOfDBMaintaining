@@ -7,7 +7,7 @@ use Exception\ParameterException;
 
 try {
     if (!isset($_GET["imageId"]) || !ctype_digit($_GET["imageId"])) {
-        throw new ParameterException("Pas de demande de couverture dans cover.php!");
+        throw new ParameterException("No image in image.php!");
     }
     $imageId=(int)$_GET["imageId"];
     $image=Image::findById($imageId);
