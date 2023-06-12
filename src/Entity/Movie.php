@@ -185,4 +185,36 @@ class Movie
         $this->id=null;
         return $this;
     }
+
+    /**
+     * Met à jour le film
+     * @return $this
+     */
+    protected function update(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            UPDATE Artist
+            SET posterId=:posterId,
+                originalLanguage=:originLang,
+                originalTitle=:originTitle,
+                overview=:overview,
+                releaseDate=:releaseDate,
+                runtime=:runtime,
+                tagline=:tagline,
+                title=:title
+            WHERE id=:movieId
+        SQL
+        );
+        $stmt->bindValue('movieId', $this->getId(), PDO::PARAM_INT);
+        $stmt->bindValue('posterId', $this->getPosterId(), PDO::PARAM_INT);
+        $stmt->bindValue('originLang', $this->getOriginalLanguage());
+        $stmt->bindValue('originTitle', $this->getOriginalTitle());
+        $stmt->bindValue('releaseDate', $this->getReleaseDate());
+        $stmt->bindValue('runtime', $this->getRuntime(), PDO::PARAM_INT);
+        $stmt->bindValue('tagline', $this->getTagline());
+        $stmt->bindValue('title', $this->getTitle());
+        $stmt->execute();
+        return $this;
+    }
 }
