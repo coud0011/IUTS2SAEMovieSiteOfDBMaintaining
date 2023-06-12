@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
 use PDO;
 
 class Movie
@@ -276,5 +277,23 @@ class Movie
             $this->insert();
         }
         return $this;
+    }
+
+    public static function findById(int $id): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM Movie
+            WHERE id=:movieId
+        SQL
+        );
+        $stmt->bindValue('movieId', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $movie=$stmt->fetchObject(Movie::class);
+        if (!$movie) {
+            throw new EntityNotFoundException("findById() - Movie not found");
+        }
+        return $movie;
     }
 }
