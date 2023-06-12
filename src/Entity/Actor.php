@@ -171,4 +171,17 @@ class Actor
         $stmt->execute();
         return $this;
     }
+
+    public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?int $avatarId=null, ?string $deathday, ?int $id=null): Actor
+    {
+        $actor=new Actor();
+        $actor->id=$id;
+        $actor->avatarId=$avatarId;
+        $actor->birthday=$birthday;
+        $actor->deathday=$deathday;
+        $actor->name=$name;
+        $actor->biography=$biography;
+        $actor->placeOfBirth=$placeOfBirth;
+        return $actor;
+    }
 }
