@@ -6,7 +6,7 @@ namespace Entity;
 
 use Database\MyPdo;
 use PDO;
-use src\Exception\EntityNotFoundException;
+use Exception\EntityNotFoundException;
 
 class Movie
 {
@@ -20,7 +20,7 @@ class Movie
     private string $tagline;
     private string $title;
 
-    public function __construct()
+    private function __construct()
     {
 
     }
