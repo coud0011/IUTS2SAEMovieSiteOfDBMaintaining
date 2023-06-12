@@ -3,7 +3,7 @@
     "description": "sae organisée par M.Cutrona",
     "autoload": {
         "psr-4": {
-            "Sae2\\01\\": "src/"
+            "": "src/"
         }
     },
     "authors": [
