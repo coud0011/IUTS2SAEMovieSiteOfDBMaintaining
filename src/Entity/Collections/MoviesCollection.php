@@ -36,7 +36,7 @@ class MoviesCollection
      * @param int $genreId
      * @return Movie[]
      */
-    public function findByGenreId(int $genreId): array
+    public static function findByGenreId(int $genreId): array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
