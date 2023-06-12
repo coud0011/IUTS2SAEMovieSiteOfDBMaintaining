@@ -244,4 +244,27 @@ class Movie
         return $movie;
     }
 
+    /**
+     * Insert le film dans la base de données
+     * @return $this
+     */
+    public function insert(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            INSERT INTO Movie (posterId, originalLanguage, originalTitle, releaseDate, runtime, tagline, title)
+            VALUES (:posterId, :originLang, :originTitle, :releaseDate, :runtime, :tagline, :title)
+        SQL
+        );
+        $stmt->bindValue('posterId', $this->getPosterId(), PDO::PARAM_INT);
+        $stmt->bindValue('originLang', $this->getOriginalLanguage());
+        $stmt->bindValue('originTitle', $this->getOriginalTitle());
+        $stmt->bindValue('releaseDate', $this->getReleaseDate());
+        $stmt->bindValue('runtime', $this->getRuntime(), PDO::PARAM_INT);
+        $stmt->bindValue('tagline', $this->getTagline());
+        $stmt->bindValue('title', $this->getTitle());
+        $stmt->execute();
+        $this->setId((int)MyPdo::getInstance()->lastInsertId());
+        return $this;
+    }
 }
