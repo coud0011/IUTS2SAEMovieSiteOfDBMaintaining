@@ -11,7 +11,7 @@ use PDO;
 class Actor
 {
     private ?int $id;
-    private int $avatarId;
+    private ?int $avatarId;
     private string $birthday;
     private ?string $deathday;
     private string $name;
@@ -31,9 +31,9 @@ class Actor
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAvatarId(): int
+    public function getAvatarId(): ?int
     {
         return $this->avatarId;
     }
@@ -87,9 +87,9 @@ class Actor
     }
 
     /**
-     * @param int $avatarId
+     * @param int|null $avatarId
      */
-    public function setAvatarId(int $avatarId): void
+    public function setAvatarId(?int $avatarId): void
     {
         $this->avatarId = $avatarId;
     }
