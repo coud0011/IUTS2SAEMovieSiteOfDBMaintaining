@@ -217,4 +217,31 @@ class Movie
         $stmt->execute();
         return $this;
     }
+
+    /**
+     * Crée une nouvelle instance de Movie
+     * @param string $originLang
+     * @param string $originTitle
+     * @param string $releaseDate
+     * @param int $runtime
+     * @param string $tagline
+     * @param string $title
+     * @param int|null $posterId
+     * @param int|null $movieId
+     * @return Movie
+     */
+    public function create(string $originLang, string $originTitle, string $releaseDate, int $runtime, string $tagline, string $title, ?int $posterId=null, ?int $movieId=null)
+    {
+        $movie=new Movie();
+        $movie->setId($movieId);
+        $movie->setPosterId($posterId);
+        $movie->setOriginalLanguage($originLang);
+        $movie->setOriginalTitle($originTitle);
+        $movie->setReleaseDate($releaseDate);
+        $movie->setRuntime($runtime);
+        $movie->setTagline($tagline);
+        $movie->setTitle($title);
+        return $movie;
+    }
+
 }
