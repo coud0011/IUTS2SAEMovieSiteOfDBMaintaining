@@ -13,9 +13,9 @@ try {
     if (!ctype_digit($actorId)) {
         throw new ParameterException('Parameter actorId not int');
     }
-    $actor= Actor::findById((int)$actorId);
+    $actor = Actor::findById((int)$actorId);
     $actor->delete();
-    header('Location:index.php');
+    header('Location:/index.php');
     exit();
 } catch (ParameterException) {
     http_response_code(400);
