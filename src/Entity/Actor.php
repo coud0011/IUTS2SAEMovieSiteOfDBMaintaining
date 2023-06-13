@@ -181,7 +181,7 @@ class Actor
 
     /**
      * Crée une instance de la classe Actor
-     * @param string $birthday
+     * @param string|null $birthday
      * @param string $name
      * @param string $biography
      * @param string $placeOfBirth
@@ -190,7 +190,7 @@ class Actor
      * @param int|null $id
      * @return Actor
      */
-    public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?string $deathday=null, ?int $avatarId=null, ?int $id=null): Actor
+    public static function create(?string $birthday, ?string $deathday, string $name, string $biography, string $placeOfBirth, ?int $avatarId=null, ?int $id=null): Actor
     {
         $actor=new Actor();
         $actor->id=$id;
