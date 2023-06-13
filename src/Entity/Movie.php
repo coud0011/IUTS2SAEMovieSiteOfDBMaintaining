@@ -211,6 +211,7 @@ class Movie
         $stmt->bindValue('posterId', $this->getPosterId(), PDO::PARAM_INT);
         $stmt->bindValue('originLang', $this->getOriginalLanguage());
         $stmt->bindValue('originTitle', $this->getOriginalTitle());
+        $stmt->bindValue('overview', $this->getOverview());
         $stmt->bindValue('releaseDate', $this->getReleaseDate());
         $stmt->bindValue('runtime', $this->getRuntime(), PDO::PARAM_INT);
         $stmt->bindValue('tagline', $this->getTagline());
@@ -223,6 +224,7 @@ class Movie
      * Crée une nouvelle instance de Movie
      * @param string $originLang
      * @param string $originTitle
+     * @param string $overview
      * @param string $releaseDate
      * @param int $runtime
      * @param string $tagline
@@ -231,13 +233,14 @@ class Movie
      * @param int|null $movieId
      * @return Movie
      */
-    public function create(string $originLang, string $originTitle, string $releaseDate, int $runtime, string $tagline, string $title, ?int $posterId=null, ?int $movieId=null)
+    public static function create(string $originLang, string $originTitle, string $overview, string $releaseDate, int $runtime, string $tagline, string $title, ?int $posterId=null, ?int $movieId=null)
     {
         $movie=new Movie();
         $movie->setId($movieId);
         $movie->setPosterId($posterId);
         $movie->setOriginalLanguage($originLang);
         $movie->setOriginalTitle($originTitle);
+        $movie->setOverview($overview);
         $movie->setReleaseDate($releaseDate);
         $movie->setRuntime($runtime);
         $movie->setTagline($tagline);
@@ -253,13 +256,14 @@ class Movie
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-            INSERT INTO Movie (posterId, originalLanguage, originalTitle, releaseDate, runtime, tagline, title)
-            VALUES (:posterId, :originLang, :originTitle, :releaseDate, :runtime, :tagline, :title)
+            INSERT INTO Movie (posterId, originalLanguage, originalTitle, overview,  releaseDate, runtime, tagline, title)
+            VALUES (:posterId, :originLang, :originTitle, :overview, :releaseDate, :runtime, :tagline, :title)
         SQL
         );
         $stmt->bindValue('posterId', $this->getPosterId(), PDO::PARAM_INT);
         $stmt->bindValue('originLang', $this->getOriginalLanguage());
         $stmt->bindValue('originTitle', $this->getOriginalTitle());
+        $stmt->bindValue('overview', $this->getOverview());
         $stmt->bindValue('releaseDate', $this->getReleaseDate());
         $stmt->bindValue('runtime', $this->getRuntime(), PDO::PARAM_INT);
         $stmt->bindValue('tagline', $this->getTagline());

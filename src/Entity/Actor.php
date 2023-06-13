@@ -12,7 +12,7 @@ class Actor
 {
     private ?int $id;
     private ?int $avatarId;
-    private string $birthday;
+    private ?string $birthday;
     private ?string $deathday;
     private string $name;
     private string $biography;
@@ -22,9 +22,7 @@ class Actor
     {
     }
 
-    /**
-     * @return int|null
-     */
+
     public function getId(): ?int
     {
         return $this->id;
@@ -39,9 +37,9 @@ class Actor
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBirthday(): string
+    public function getBirthday(): ?string
     {
         return $this->birthday;
     }
@@ -95,9 +93,9 @@ class Actor
     }
 
     /**
-     * @param string $birthday
+     * @param string|null $birthday
      */
-    public function setBirthday(string $birthday): void
+    public function setBirthday(?string $birthday): void
     {
         $this->birthday = $birthday;
     }
@@ -192,7 +190,7 @@ class Actor
      * @param int|null $id
      * @return Actor
      */
-    public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?int $avatarId=null, ?string $deathday, ?int $id=null): Actor
+    public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?string $deathday=null, ?int $avatarId=null, ?int $id=null): Actor
     {
         $actor=new Actor();
         $actor->id=$id;
