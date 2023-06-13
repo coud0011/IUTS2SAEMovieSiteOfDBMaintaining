@@ -48,12 +48,12 @@ foreach($moviesCollection as $movie){
     }
     $webpage->appendContent(<<<HTML
             
-            <div class="movie">
+            <div class="movie"><a href="movie.php?movieId={$movie->getId()}">
                 <div class="movie_poster">
                     <img alt="Poster du film" src="$img">
                 </div>
                 <div class="movie_title">{$movie->getTitle()}</div>
-            </div>
+            </a></div>
 HTML
     );
     $it+=1;
