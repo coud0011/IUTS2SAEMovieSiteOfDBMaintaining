@@ -211,16 +211,17 @@ class Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
-            INSERT INTO Actor (avatarId, birthday, deathday, name, biography, placeOfBirth)
-            VALUES (:avatarId, :birthday, :deathday, :name, :biography, :placeOfBirth)
+            INSERT INTO People (avatarId, birthday, deathday, name, biography, placeOfBirth)
+            VALUES (:avatarId, :birthday, :deathday, :actorName, :biography, :placeOfBirth)
         SQL
         );
-        $stmt->bindValue(':avatarId', $this->getAvatarId(), PDO::PARAM_INT);
+        $stmt->bindValue(':avatarId', $this->getAvatarId());
         $stmt->bindValue(':birthday', $this->getBirthday());
         $stmt->bindValue(':deathday', $this->getDeathday());
         $stmt->bindValue(':actorName', $this->getName());
         $stmt->bindValue(':biography', $this->getBiography());
-        $stmt->bindValue(':placeOfBirth', $this->getPlaceOfBirth());        $stmt->execute();
+        $stmt->bindValue(':placeOfBirth', $this->getPlaceOfBirth());
+        $stmt->execute();
         $this->setId((int)MyPdo::getInstance()->lastInsertId());
         return $this;
     }
