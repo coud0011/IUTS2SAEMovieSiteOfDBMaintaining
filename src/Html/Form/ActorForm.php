@@ -68,4 +68,35 @@ class ActorForm
             </form>
         HTML;
     }
+
+    /**
+     * @return void
+     * @throws ParameterException
+     */
+    public function setEntityFromQueryString(): void
+    {
+        $id=null;
+        if (isset($_POST['id']) && ctype_digit($_POST['id'])) {
+            $id=(int)$_POST['id'];
+        }
+        $avatarId=null;
+        if (isset($_POST['avatarId']) && ctype_digit($_POST['avatarId'])) {
+            $avatarId=(int)$_POST['avatarId'];
+        }
+        $deathday=null;
+        if (isset($_POST['deathday'])) {
+            $deathday=$this->stripTagsAndTrim($_POST['deathday']);
+        }
+        if (!isset($_POST['birthday']) || !isset($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
+            throw new ParameterException('setEntityFromQueryString() - Missing parameter');
+        }
+        $birthday=$this->stripTagsAndTrim($_POST['birthday']);
+        $name=$this->stripTagsAndTrim($_POST['name']);
+        $biography=$this->stripTagsAndTrim($_POST['biography']);
+        $placeOfBirth=$this->stripTagsAndTrim($_POST['placeOfBirth']);
+        if (empty($birthday) || empty($name) || empty($biography) || empty($placeOfBirth)) {
+            throw new ParameterException('setEntityFromQueryString() - Parameter is empty');
+        }
+        $this->actor=Actor::create($birthday, $name, $biography, $placeOfBirth, $deathday, $avatarId, $id);
+    }
 }
