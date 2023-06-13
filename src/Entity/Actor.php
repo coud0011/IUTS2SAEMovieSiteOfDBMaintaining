@@ -159,7 +159,7 @@ class Actor
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
             UPDATE People
-            SET avatarId=:avatarId
+            SET avatarId=:avatarId,
                 birthday=:birthday,
                 deathday=:deathday,
                 name=:actorName,
@@ -169,7 +169,7 @@ class Actor
         SQL
         );
         $stmt->bindValue(':actorId', $this->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':avatarId', $this->getAvatarId(), PDO::PARAM_INT);
+        $stmt->bindValue(':avatarId', $this->getAvatarId());
         $stmt->bindValue(':birthday', $this->getBirthday());
         $stmt->bindValue(':deathday', $this->getDeathday());
         $stmt->bindValue(':actorName', $this->getName());
