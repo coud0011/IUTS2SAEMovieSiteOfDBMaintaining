@@ -34,35 +34,29 @@ class ActorForm
      */
     public function getHtmlForm(string $action): string
     {
-        $id=$this?->getActor()?->getId();
-        $avatarId=$this?->getActor()?->getAvatarId();
-        $birthday=$this?->getActor()?->getBirthday();
-        $deathday=$this?->getActor()?->getDeathday();
-        $name=$this?->getActor()?->getName();
-        $biography=$this?->getActor()?->getBiography();
-        $placeOfBirth=$this?->getActor()?->getPlaceOfBirth();
         return <<<HTML
             <form action="{$action}" method="post">
-                <input type="hidden" name="id" value="{$id}">
+                <input type="hidden" name="id" value="{$this?->getActor()?->getId()}">
+                <input type="hidden" name="avatarId" value="{$this?->getActor()?->getAvatarId()}">
                 <label for="birthday">
                     Date de naissance
-                    <input type="date" name="birthday" value="{$this->escapeString($birthday)}">
+                    <input type="date" name="birthday" value="{$this->escapeString($this?->getActor()?->getBirthday())}">
                 </label>
                 <label for="deathday">
                     Date de décès
-                    <input type="date" name="deathday" value="{$this->escapeString($deathday)}">
+                    <input type="date" name="deathday" value="{$this->escapeString($this?->getActor()?->getDeathday())}">
                 </label>
                 <label for="name">
                     Nom
-                    <input type="text" name="name" value="{$this->escapeString($name)}" required>
+                    <input type="text" name="name" value="{$this->escapeString($this?->getActor()?->getName())}" required>
                 </label>
                 <label for="biography">
                     Biographie
-                    <input type="text" name="biography" value="{$this->escapeString($biography)}">
+                    <input type="text" name="biography" value="{$this->escapeString($this?->getActor()?->getBiography())}">
                 </label>
                 <label for="placeOfBirth">
                     Lieu de naissance
-                    <input type="text" name="placeOfBirth" value="{$this->escapeString($placeOfBirth)}">
+                    <input type="text" name="placeOfBirth" value="{$this->escapeString($this?->getActor()?->getPlaceOfBirth())}">
                 </label>
                 <input type="submit" value="Enregistrer">
             </form>
@@ -91,15 +85,12 @@ class ActorForm
         if (!empty($_POST['deathday'])) {
             $deathday=$this->stripTagsAndTrim($_POST['deathday']);
         }
-        if (!isset($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
+        if (empty($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
             throw new ParameterException('setEntityFromQueryString() - Missing parameter');
         }
         $name=$this->stripTagsAndTrim($_POST['name']);
         $biography=$this->stripTagsAndTrim($_POST['biography']);
         $placeOfBirth=$this->stripTagsAndTrim($_POST['placeOfBirth']);
-        if (empty($name)) {
-            throw new ParameterException('setEntityFromQueryString() - Parameter name is empty');
-        }
-        $this->actor=Actor::create($birthday, $deathday, $name, $biography, $placeOfBirth, $avatarId, $id);
+        $this->actor=Actor::create($name, $biography, $placeOfBirth, $birthday, $deathday, $avatarId, $id);
     }
 }
