@@ -20,6 +20,7 @@ else{
 $webpage->appendCssUrl("css/style.css");
 $webpage->appendContent('<form method="GET" action="index.php" class="genres"><h1>Filtrage par genre : </h1><select name="genreId">');
 $genres=GenresCollection::findAll();
+$webPage->appendToHead('<link rel="icon" type="image/png" href="/img/cinema.png" />');
 foreach($genres as $genre){
     $webpage->appendContent(<<<HTML
 <option class="genre" value="{$genre->getId()}"
