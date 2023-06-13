@@ -84,12 +84,11 @@ class ActorForm
             $avatarId=(int)$_POST['avatarId'];
         }
         $birthday=null;
-        if (isset($_POST['birthday'])  && !empty($_POST['birthday'])) {
+        if (!empty($_POST['birthday'])) {
             $birthday=$this->stripTagsAndTrim($_POST['birthday']);
         }
-        var_dump($_POST['deathday']);
         $deathday=null;
-        if (isset($_POST['deathday']) && !empty($_POST['deathday'])) {
+        if (!empty($_POST['deathday'])) {
             $deathday=$this->stripTagsAndTrim($_POST['deathday']);
         }
         if (!isset($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
