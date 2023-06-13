@@ -34,12 +34,7 @@ h1{
     padding: 1px;
     font-size: 50px;
 }
-.footer {
-    justify-content: center;
-}
-
-h1 {
-    display: flex;
+.cinema{
     flex: 0 0 auto;
 
 }
@@ -68,4 +63,21 @@ h1 {
 }
 .footer_text{
     margin:10px;
+}
+.genres{
+    display: flex;
+    flex-direction: row;
+}
+.genres>select{
+    display: flex;
+    flex: 0 0 auto;
+}
+.genres>h1{
+    display: flex;
+    flex: 1 1 auto;
+    font-size: 20px;
+    border: black 2px solid;
+    padding: 2px;
+    align-items: stretch;
+    margin:0;
 }
