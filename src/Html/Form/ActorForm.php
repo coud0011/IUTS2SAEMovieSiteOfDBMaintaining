@@ -54,7 +54,7 @@ class ActorForm
                 </label>
                 <label for="name">
                     Nom
-                    <input type="text" name="name" value="{$this->escapeString($name)}">
+                    <input type="text" name="name" value="{$this->escapeString($name)}" required>
                 </label>
                 <label for="biography">
                     Biographie
@@ -83,20 +83,24 @@ class ActorForm
         if (isset($_POST['avatarId']) && ctype_digit($_POST['avatarId'])) {
             $avatarId=(int)$_POST['avatarId'];
         }
+        $birthday=null;
+        if (isset($_POST['birthday'])  && !empty($_POST['birthday'])) {
+            $birthday=$this->stripTagsAndTrim($_POST['birthday']);
+        }
+        var_dump($_POST['deathday']);
         $deathday=null;
-        if (isset($_POST['deathday'])) {
+        if (isset($_POST['deathday']) && !empty($_POST['deathday'])) {
             $deathday=$this->stripTagsAndTrim($_POST['deathday']);
         }
-        if (!isset($_POST['birthday']) || !isset($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
+        if (!isset($_POST['name']) || !isset($_POST['biography']) || !isset($_POST['placeOfBirth'])) {
             throw new ParameterException('setEntityFromQueryString() - Missing parameter');
         }
-        $birthday=$this->stripTagsAndTrim($_POST['birthday']);
         $name=$this->stripTagsAndTrim($_POST['name']);
         $biography=$this->stripTagsAndTrim($_POST['biography']);
         $placeOfBirth=$this->stripTagsAndTrim($_POST['placeOfBirth']);
-        if (empty($birthday) || empty($name) || empty($biography) || empty($placeOfBirth)) {
-            throw new ParameterException('setEntityFromQueryString() - Parameter is empty');
+        if (empty($name)) {
+            throw new ParameterException('setEntityFromQueryString() - Parameter name is empty');
         }
-        $this->actor=Actor::create($birthday, $name, $biography, $placeOfBirth, $deathday, $avatarId, $id);
+        $this->actor=Actor::create($birthday, $deathday, $name, $biography, $placeOfBirth, $avatarId, $id);
     }
 }
