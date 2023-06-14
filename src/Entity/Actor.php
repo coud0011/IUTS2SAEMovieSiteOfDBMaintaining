@@ -159,7 +159,7 @@ class Actor
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
             UPDATE People
-            SET avatarId=:avatarId
+            SET avatarId=:avatarId,
                 birthday=:birthday,
                 deathday=:deathday,
                 name=:actorName,
@@ -169,7 +169,7 @@ class Actor
         SQL
         );
         $stmt->bindValue(':actorId', $this->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':avatarId', $this->getAvatarId(), PDO::PARAM_INT);
+        $stmt->bindValue(':avatarId', $this->getAvatarId());
         $stmt->bindValue(':birthday', $this->getBirthday());
         $stmt->bindValue(':deathday', $this->getDeathday());
         $stmt->bindValue(':actorName', $this->getName());
@@ -181,7 +181,7 @@ class Actor
 
     /**
      * Crée une instance de la classe Actor
-     * @param string $birthday
+     * @param string|null $birthday
      * @param string $name
      * @param string $biography
      * @param string $placeOfBirth
@@ -190,7 +190,7 @@ class Actor
      * @param int|null $id
      * @return Actor
      */
-    public static function create(string $birthday, string $name, string $biography, string $placeOfBirth, ?string $deathday=null, ?int $avatarId=null, ?int $id=null): Actor
+    public static function create(string $name, string $biography, string $placeOfBirth, ?string $birthday=null, ?string $deathday=null, ?int $avatarId=null, ?int $id=null): Actor
     {
         $actor=new Actor();
         $actor->id=$id;
@@ -211,16 +211,17 @@ class Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
-            INSERT INTO Actor (avatarId, birthday, deathday, name, biography, placeOfBirth)
-            VALUES (:avatarId, :birthday, :deathday, :name, :biography, :placeOfBirth)
+            INSERT INTO People (avatarId, birthday, deathday, name, biography, placeOfBirth)
+            VALUES (:avatarId, :birthday, :deathday, :actorName, :biography, :placeOfBirth)
         SQL
         );
-        $stmt->bindValue(':avatarId', $this->getAvatarId(), PDO::PARAM_INT);
+        $stmt->bindValue(':avatarId', $this->getAvatarId());
         $stmt->bindValue(':birthday', $this->getBirthday());
         $stmt->bindValue(':deathday', $this->getDeathday());
         $stmt->bindValue(':actorName', $this->getName());
         $stmt->bindValue(':biography', $this->getBiography());
-        $stmt->bindValue(':placeOfBirth', $this->getPlaceOfBirth());        $stmt->execute();
+        $stmt->bindValue(':placeOfBirth', $this->getPlaceOfBirth());
+        $stmt->execute();
         $this->setId((int)MyPdo::getInstance()->lastInsertId());
         return $this;
     }
