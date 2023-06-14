@@ -16,10 +16,18 @@ try {
 
 
 
-} catch (ParameterException) {
-
-} catch (EntityNotFoundException) {
-    http_response_code(404);
-} catch (Exception) {
-    http_response_code(500);
+} catch (ParameterException|EntityNotFoundException|Exception) {
+    if(!isset($_GET["src"])){
+        http_response_code(404);
+    }
+    switch($_GET["src"]) {
+        case 'movie':
+            header("Location: img/movie.png");
+            exit();
+        case 'actor':
+            header("Location: img/actor.png");
+            exit();
+        default:
+            http_response_code(500);
+    }
 }

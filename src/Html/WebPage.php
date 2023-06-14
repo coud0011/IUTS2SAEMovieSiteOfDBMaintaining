@@ -140,35 +140,37 @@ class WebPage
             <title>$this->title</title>
             </head>
             <body>
-                <div class="body">
-                    <header class="header">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <h1>$this->title</h1>
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                    </header>
-                    $this->body
-                    <footer class="footer">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <div class="footer_text">Dernière modification de cette page le $date</div>
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                        <img src="img/cinema.png" alt="cinema" class="cinema">
-                    </footer>
-                </div>
+                <header class="header">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <h1>$this->title</h1>
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                </header>
+                $this->body
+                <footer class="footer">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <div class="footer__text">Dernière modification de cette page le $date</div>
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                    <img src="/img/cinema.png" alt="illustration" class="cinema">
+                </footer>
             </body>
         </html>
         HTML;
