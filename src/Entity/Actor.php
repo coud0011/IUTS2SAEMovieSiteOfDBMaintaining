@@ -95,7 +95,6 @@ class Actor
 
     /**
      * Supprime un acteur par rapport à l'id de l'objet courant
-     * @return $this
      */
     public function delete(): Actor
     {
@@ -113,7 +112,6 @@ class Actor
 
     /**
      * Met à jour un acteur par rapport à l'id de l'objet courant
-     * @return $this
      */
     protected function update(): Actor
     {
@@ -142,14 +140,6 @@ class Actor
 
     /**
      * Crée une instance de la classe Actor
-     * @param string|null $birthday
-     * @param string $name
-     * @param string $biography
-     * @param string $placeOfBirth
-     * @param int|null $avatarId
-     * @param string|null $deathday
-     * @param int|null $id
-     * @return Actor
      */
     public static function create(string $name, string $biography, string $placeOfBirth, ?string $birthday=null, ?string $deathday=null, ?int $avatarId=null, ?int $id=null): Actor
     {
@@ -166,7 +156,6 @@ class Actor
 
     /**
      * Insère un acteur dans la base de données par rapport à l'objet courant
-     * @return $this
      */
     protected function insert(): Actor
     {
@@ -187,9 +176,6 @@ class Actor
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function save(): Actor
     {
         if ($this->getId()) {

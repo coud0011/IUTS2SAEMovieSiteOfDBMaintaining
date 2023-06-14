@@ -13,26 +13,16 @@ class MovieForm
     use StringEscaper;
     private ?Movie $movie;
 
-    /**
-     * @param Movie|null $movie
-     */
     public function __construct(?Movie $movie=null)
     {
         $this->movie = $movie;
     }
 
-    /**
-     * @return Movie|null
-     */
     public function getMovie(): ?Movie
     {
         return $this->movie;
     }
 
-    /**
-     * @param string $action
-     * @return string
-     */
     public function getHtmlForm(string $action): string
     {
         return <<<HTML

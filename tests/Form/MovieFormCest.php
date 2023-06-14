@@ -1,9 +1,12 @@
 <?php
+
 namespace Tests;
+
 use Codeception\Stub;
 use Entity\Movie;
 use Html\Form\MovieForm;
 use Tests\FormTester;
+
 class MovieFormCest
 {
     public function correctBaseStructure(FormTester $I)

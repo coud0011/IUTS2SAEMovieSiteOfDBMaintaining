@@ -117,7 +117,6 @@ class Movie
 
     /**
      * Supprime un film par rapport à l'id courant
-     * @return $this
      */
     public function delete(): Movie
     {
@@ -135,7 +134,6 @@ class Movie
 
     /**
      * Met à jour le film
-     * @return $this
      */
     protected function update(): Movie
     {
@@ -168,16 +166,6 @@ class Movie
 
     /**
      * Crée une nouvelle instance de Movie
-     * @param string $originLang
-     * @param string $originTitle
-     * @param string $overview
-     * @param string $releaseDate
-     * @param int $runtime
-     * @param string $tagline
-     * @param string $title
-     * @param int|null $posterId
-     * @param int|null $movieId
-     * @return Movie
      */
     public static function create(string $originLang, string $originTitle, string $overview, string $releaseDate, int $runtime, string $tagline, string $title, ?int $posterId=null, ?int $movieId=null)
     {
@@ -196,7 +184,6 @@ class Movie
 
     /**
      * Insert le film dans la base de données
-     * @return $this
      */
     public function insert(): Movie
     {

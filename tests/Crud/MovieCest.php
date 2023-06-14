@@ -1,8 +1,11 @@
 <?php
+
 namespace Tests\Crud;
+
 use Entity\Movie;
 use Exception\EntityNotFoundException;
 use Tests\CrudTester;
+
 class MovieCest
 {
     public function findById(CrudTester $I): void
