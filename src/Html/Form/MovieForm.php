@@ -34,45 +34,37 @@ class MovieForm
      */
     public function getHtmlForm(string $action): string
     {
-        $id=$this?->getMovie()?->getId();
-        $posterId=$this?->getMovie()?->getPosterId();
-        $originLang=$this?->getMovie()?->getOriginalLanguage();
-        $originTitle=$this?->getMovie()?->getOriginalTitle();
-        $overview=$this?->getMovie()?->getOverview();
-        $releaseDate=$this?->getMovie()?->getReleaseDate();
-        $runtime=$this?->getMovie()?->getRuntime();
-        $tagline=$this?->getMovie()?->getTagline();
-        $title=$this?->getMovie()?->getTitle();
         return <<<HTML
             <form action="{$action}" method="post">
-                <input type="hidden" name="id" value="{$id}">
+                <input type="hidden" name="id" value="{$this?->getMovie()?->getId()}">
+                <input type="hidden" name="posterId" value="{$this?->getMovie()?->getPosterId()}">
                 <label for="originLang">
                     Langue originale
-                    <input type="text" name="originLang" value="{$this->escapeString($originLang)}">
+                    <input type="text" name="originLang" value="{$this->escapeString($this?->getMovie()?->getOriginalLanguage())}" required>
                 </label>
                 <label for="originTitle">
                     Titre original
-                    <input type="text" name="originTitle" value="{$this->escapeString($originTitle)}">
+                    <input type="text" name="originTitle" value="{$this->escapeString($this?->getMovie()?->getOriginalTitle())}" required>
                 </label>
                 <label for="overview">
                     Synopsis
-                    <input type="text" name="overview" value="{$this->escapeString($overview)}">
+                    <input type="text" name="overview" value="{$this->escapeString($this?->getMovie()?->getOverview())}">
                 </label>
                 <label for="releaseDate">
                     Date de sortie
-                    <input type="date" name="releaseDate" value="{$this->escapeString($releaseDate)}">
+                    <input type="date" name="releaseDate" value="{$this->escapeString($this?->getMovie()?->getReleaseDate())}" required>
                 </label>
                 <label for="runtime">
                     Durée
-                    <input type="number" name="runtime" value="{$this->escapeString($runtime)}">
+                    <input type="number" name="runtime" value="{$this?->getMovie()?->getRuntime()}" required>
                 </label>
                 <label for="tagline">
                     Slogan
-                    <input type="text" name="tagline" value="{$this->escapeString($tagline)}">
+                    <input type="text" name="tagline" value="{$this->escapeString($this?->getMovie()?->getTagline())}">
                 </label>
                 <label for="title">
                     Titre
-                    <input type="text" name="title" value="{$this->escapeString($title)}">
+                    <input type="text" name="title" value="{$this->escapeString($this?->getMovie()?->getTitle())}" required>
                 </label>
                 <input type="submit" value="Enregistrer">
             </form>
@@ -93,19 +85,20 @@ class MovieForm
         if (isset($_POST['posterId']) && ctype_digit($_POST['posterId'])) {
             $posterId=(int)$_POST['posterId'];
         }
-        $tagline="";
-        if (isset($_POST['tagline'])) {
-            $tagline=$this->stripTagsAndTrim($_POST['tagline']);
-        }
-        if (!isset($_POST['originalLang']) || !isset($_POST['originalTitle']) || !isset($_POST['overview']) || !isset($_POST['releaseDate']) || !isset($_POST['runtime']) || !isset($_POST['title'])) {
+        if (empty($this->stripTagsAndTrim($_POST['originLang'])) || empty($this->stripTagsAndTrim($_POST['originTitle'])) || !isset($_POST['overview']) || empty($this->stripTagsAndTrim($_POST['releaseDate'])) || empty($_POST['runtime']) || !isset($_POST['tagline']) || empty($this->stripTagsAndTrim($_POST['title']))) {
             throw new ParameterException('setEntityFromQueryString() - Missing parameter');
         }
-        $originLang = $this->stripTagsAndTrim($_POST['originLang']);
-        $originTitle = $this->stripTagsAndTrim($_POST['originTitle']);
-        $overview = $this->stripTagsAndTrim($_POST['overview']);
-        $releaseDate = $this->stripTagsAndTrim($_POST['releaseDate']);
-        $runtime = (int)$_POST['runtime'];
-        $title = $this->stripTagsAndTrim($_POST['title']);
-        $this->movie=Movie::create($originLang, $originTitle, $overview, $releaseDate, $runtime, $tagline, $title, $posterId, $id);
+
+        $this->movie=Movie::create(
+            $this->stripTagsAndTrim($_POST['originLang']),
+            $this->stripTagsAndTrim($_POST['originTitle']),
+            $this->stripTagsAndTrim($_POST['overview']),
+            $this->stripTagsAndTrim($_POST['releaseDate']),
+            (int)$_POST['runtime'],
+            $this->stripTagsAndTrim($_POST['tagline']),
+            $this->stripTagsAndTrim($_POST['title']),
+            $posterId,
+            $id
+        );
     }
 }
