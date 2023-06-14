@@ -6,6 +6,11 @@
             "": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "coud0011, sahi0015"
