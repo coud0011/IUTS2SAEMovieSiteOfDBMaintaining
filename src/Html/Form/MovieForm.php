@@ -41,11 +41,11 @@ class MovieForm
                 <input type="hidden" name="posterId" value="{$this?->getMovie()?->getPosterId()}">
                 <label for="originLang">
                     <h2>Langue originale : </h2>
-                    <input type="text" name="originLang" value="{$this->escapeString($this?->getMovie()?->getOriginalLanguage())}">
+                    <input type="text" name="originLang" value="{$this->escapeString($this?->getMovie()?->getOriginalLanguage())}" required>
                 </label>
                 <label for="originTitle">
                     <h2>Titre original :</h2>
-                    <input type="text" name="originTitle" value="{$this->escapeString($this?->getMovie()?->getOriginalTitle())}">
+                    <input type="text" name="originTitle" value="{$this->escapeString($this?->getMovie()?->getOriginalTitle())}" required>
                 </label>
                 <label for="overview">
                     <h2>Synopsis :</h2>
@@ -53,11 +53,11 @@ class MovieForm
                 </label>
                 <label for="releaseDate">
                     <h2>Date de sortie :</h2>
-                    <input type="date" name="releaseDate" value="{$this->escapeString($this?->getMovie()?->getReleaseDate())}">
+                    <input type="date" name="releaseDate" value="{$this->escapeString($this?->getMovie()?->getReleaseDate())}" required>
                 </label>
                 <label for="runtime">
                     <h2>Durée :</h2>
-                    <input type="number" name="runtime" value="{$this?->getMovie()?->getRuntime()}">
+                    <input type="number" name="runtime" value="{$this?->getMovie()?->getRuntime()}" required>
                 </label>
                 <label for="tagline">
                     <h2>Slogan :</h2>
@@ -65,7 +65,7 @@ class MovieForm
                 </label>
                 <label for="title">
                     <h2>Titre :</h2>
-                    <input type="text" name="title" value="{$this?->getMovie()?->getTitle()}">
+                    <input type="text" name="title" value="{$this?->getMovie()?->getTitle()}" required>
                 </label>
                 <input type="submit" value="Enregistrer">
             </form>
