@@ -85,7 +85,7 @@ class MovieForm
         if (isset($_POST['posterId']) && ctype_digit($_POST['posterId'])) {
             $posterId=(int)$_POST['posterId'];
         }
-        if (empty($_POST['originLang']) || empty($_POST['originTitle']) || !isset($_POST['overview']) || empty($_POST['releaseDate']) || empty($_POST['runtime']) || !isset($_POST['tagline']) || empty($_POST['title'])) {
+        if (empty($this->stripTagsAndTrim($_POST['originLang'])) || empty($this->stripTagsAndTrim($_POST['originTitle'])) || !isset($_POST['overview']) || empty($this->stripTagsAndTrim($_POST['releaseDate'])) || empty($_POST['runtime']) || !isset($_POST['tagline']) || empty($this->stripTagsAndTrim($_POST['title']))) {
             throw new ParameterException('setEntityFromQueryString() - Missing parameter');
         }
 
