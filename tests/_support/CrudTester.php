@@ -1,6 +1,9 @@
 <?php
 namespace Tests;
 
+use Codeception\Exception\ModuleException;
+use Database\MyPdo;
+
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -23,4 +26,12 @@ class CrudTester extends \Codeception\Actor
     /**
      * Define custom actions here
      */
+    public function _initialize($settings = []): void
+    {
+        try {
+            MyPdo::setConfiguration($this->getModule('Db')->_getConfig('dsn'));
+        } catch (ModuleException $moduleException) {
+            $this->fail('Codeception DB module not found');
+        }
+    }
 }
