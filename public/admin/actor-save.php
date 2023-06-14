@@ -9,7 +9,7 @@ try {
     $artistForm->setEntityFromQueryString();
     $artistForm->getActor()->save();
     http_response_code(302);
-    header('Location: movie.php');
+    header("Location: /actor.php?actorId={$artistForm->getActor()->getId()}");
     exit();
 } catch (ParameterException) {
     http_response_code(400);
