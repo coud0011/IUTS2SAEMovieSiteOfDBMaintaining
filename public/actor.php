@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Entity\Actor;
@@ -23,17 +24,16 @@ try {
     $webPage->appendContent('<main class="actor__main">');
     $pob=$webPage->escapeString($actor->getPlaceOfBirth());
     $bio=$webPage->escapeString($actor->getBiography());
-    if($pob==""){
+    if($pob=="") {
         $pob="Lieu de naissance inconnu";
     }
-    if($bio==""){
+    if($bio=="") {
         $bio="Pas de biographie";
     }
 
-    if($actor->getDeathday()===null){
+    if($actor->getDeathday()===null) {
         $deathDay="vivant";
-    }
-    else{
+    } else {
         $deathDay=$webPage->escapeString($actor->getDeathday())===null;
     }
     $dates="{$webPage->escapeString($actor->getBirthday())} - {$deathDay}";
