@@ -15,7 +15,10 @@ Pour effectuer les tests de cs-fixer.
 composer fix:cs
 ```
 Pour fixer tous les fichiers du projet selon les règles de cs-fixer.
-
+````shell
+composer test:codecept
+````
+Pour lancer les tests codecept
 
 ## Serveur
 >Ce projet utilise XAMPP pour pouvoir lancer un serveur local sous apache 2.  

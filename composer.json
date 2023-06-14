@@ -43,6 +43,10 @@
         ],
         "start": [
             "@start:linux"
+        ],
+        "test:codecept": [
+            "php vendor/bin/codecept clean",
+            "php vendor/bin/codecept run"
         ]
     },
     "require": {
