@@ -1,5 +1,7 @@
 <?php
+
 namespace Tests\Crud\Collection;
+
 use Entity\Cast;
 use Entity\Collections\CastsCollection;
 use Tests\CrudTester;
