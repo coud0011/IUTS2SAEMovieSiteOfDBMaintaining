@@ -12,17 +12,11 @@ class Genre
     private int $id;
     private string $name;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -33,13 +27,13 @@ class Genre
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
             SELECT *
-            FROM Image
+            FROM Genre
             WHERE id=:genreId
         SQL
         );
         $stmt->bindParam(':genreId', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $genre=$stmt->fetchObject(Image::class);
+        $genre=$stmt->fetchObject(Genre::class);
         if (!$genre) {
             throw new EntityNotFoundException("findById() - Genre not found");
         }

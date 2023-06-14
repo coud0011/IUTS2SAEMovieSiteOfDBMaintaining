@@ -8,7 +8,8 @@ try {
     $artistForm=new ActorForm();
     $artistForm->setEntityFromQueryString();
     $artistForm->getActor()->save();
-    header('Location:/index.php');
+    http_response_code(302);
+    header('Location: movie.php');
     exit();
 } catch (ParameterException) {
     http_response_code(400);

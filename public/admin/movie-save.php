@@ -7,8 +7,8 @@ use Html\Form\MovieForm;
 try {
     $movieForm=new MovieForm();
     $movieForm->setEntityFromQueryString();
-    $movieForm->getMovie()->save();
-    header('Location:/index.php');
+    $movie=$movieForm->getMovie()->save();
+    header("Location: /movie.php?movieId={$movie->getId()}");
     exit();
 } catch (ParameterException) {
     http_response_code(400);
