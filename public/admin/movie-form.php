@@ -20,6 +20,7 @@ try {
 
     $webpage=new WebPage();
     $webpage->setTitle('Admin - Ajouter ou modifier un film');
+    $webpage->appendCssUrl("/css/style.css");
     $webpage->appendContent($movieForm->getHtmlForm("movie-save.php"));
     echo $webpage->toHTML();
 } catch (ParameterException) {
