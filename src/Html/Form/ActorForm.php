@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Html\Form;
@@ -12,26 +13,16 @@ class ActorForm
     use StringEscaper;
     private ?Actor $actor;
 
-    /**
-     * @param Actor|null $actor
-     */
     public function __construct(?Actor $actor=null)
     {
         $this->actor = $actor;
     }
 
-    /**
-     * @return Actor|null
-     */
     public function getActor(): ?Actor
     {
         return $this->actor;
     }
 
-    /**
-     * @param string $action
-     * @return string
-     */
     public function getHtmlForm(string $action): string
     {
         return <<<HTML

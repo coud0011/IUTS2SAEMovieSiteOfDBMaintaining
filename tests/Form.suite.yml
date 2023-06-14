@@ -1,0 +1,6 @@
+actor: FormTester
+modules:
+    enabled:
+        - \Tests\Helper\Form
+        - \Tests\Helper\Dom
+        - Asserts

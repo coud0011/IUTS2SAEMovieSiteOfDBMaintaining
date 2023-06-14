@@ -17,7 +17,7 @@ try {
 
 
 } catch (ParameterException|EntityNotFoundException|Exception) {
-    if(!isset($_GET["src"])){
+    if(!isset($_GET["src"])) {
         http_response_code(404);
     }
     switch($_GET["src"]) {

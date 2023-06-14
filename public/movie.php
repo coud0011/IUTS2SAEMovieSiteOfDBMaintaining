@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Entity\Actor;
@@ -26,16 +27,16 @@ try {
     $originTitle=$webPage->escapeString($movie->getOriginalTitle());
     $tagLine=$webPage->escapeString($movie->getTagline());
     $overview=$webPage->escapeString($movie->getOverview());
-    if($date==""){
+    if($date=="") {
         $date="Date Inconnue";
     }
-    if($originTitle==""){
+    if($originTitle=="") {
         $originTitle=$movieTitle;
     }
-    if($tagLine==""){
+    if($tagLine=="") {
         $tagLine="Pas de slogan";
     }
-    if($overview==""){
+    if($overview=="") {
         $overview="Résumé indisponible";
     }
 
@@ -66,7 +67,8 @@ try {
                 </div>
     HTML
     );
-    $webPage->appendContent(<<<HTML
+    $webPage->appendContent(
+        <<<HTML
 
         
         
@@ -97,12 +99,13 @@ HTML
         );
 
     }
-    $webPage->appendContent(<<<HTML
+    $webPage->appendContent(
+        <<<HTML
     
             </div>
         </main>
 HTML
-);
+    );
     echo $webPage->toHTML();
 } catch (ParameterException) {
     http_response_code(400);
