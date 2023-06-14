@@ -195,7 +195,7 @@ class Movie
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-            UPDATE Artist
+            UPDATE Movie
             SET posterId=:posterId,
                 originalLanguage=:originLang,
                 originalTitle=:originTitle,
@@ -208,7 +208,7 @@ class Movie
         SQL
         );
         $stmt->bindValue('movieId', $this->getId(), PDO::PARAM_INT);
-        $stmt->bindValue('posterId', $this->getPosterId(), PDO::PARAM_INT);
+        $stmt->bindValue('posterId', $this->getPosterId());
         $stmt->bindValue('originLang', $this->getOriginalLanguage());
         $stmt->bindValue('originTitle', $this->getOriginalTitle());
         $stmt->bindValue('overview', $this->getOverview());
