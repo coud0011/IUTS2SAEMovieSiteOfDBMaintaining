@@ -21,7 +21,9 @@
         "codeception/codeception": "^4.1",
         "codeception/module-phpbrowser": "^1",
         "codeception/module-asserts": "^1",
-        "codeception/module-db": "^1"
+        "codeception/module-db": "^1",
+      "ext-dom": "*",
+        "ext-libxml": "*"
     },
 
     "scripts": {
